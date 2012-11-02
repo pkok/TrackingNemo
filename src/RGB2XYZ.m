@@ -1,0 +1,12 @@
+function XYZ_im = RGB2XYZ(RGB_im)
+R_im = RGB_im(:, :, 1);
+G_im = RGB_im(:, :, 2);
+B_im = RGB_im(:, :, 3);
+XYZ_im = zeros(size(RGB_im));
+XYZ_im(:, :, 1) = 0.607 * R_im + 0.174 * G_im + 0.200 * B_im;
+XYZ_im(:, :, 2) = 0.299 * R_im + 0.587 * G_im + 0.114 * B_im;
+XYZ_im(:, :, 3) = 0.000 * R_im + 0.066 * G_im + 1.116 * B_im;
+XYZ_im(:, :, 1) = 0.49 * R_im + 0.31 * G_im + 0.20 * B_im;
+XYZ_im(:, :, 2) = 0.17697 * R_im + 0.81240 * G_im + 0.01063 * B_im;
+XYZ_im(:, :, 3) = 0.000 * R_im + 0.001 * G_im + 0.99 * B_im;
+XYZ_im = XYZ_im ./ 0.17697;
