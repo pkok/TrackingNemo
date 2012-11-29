@@ -6,6 +6,8 @@ objHist=rgbhist(obj);
 %necessary by nice to have in the long run
 euclDistMat=zeros(size(sB,1)-size(obj,1), size(sB,2)-size(obj,2));
 
+sB = RGB2rg(sB) + epanechnikov_kernel(size(sB, 1), size(sB, 2), pi, 2);
+
 %---set an arbitrarily high min distance value
 minDist=999999999;
 
