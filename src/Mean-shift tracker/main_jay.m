@@ -20,7 +20,7 @@ row=y(1); %this is the y coordinate of cartesian system called row for matrix ro
 col=x(1); %this is the x coordinate of cartesian system called col for matrix columns
 width=abs(x(2)-x(1));
 height=abs(y(2)-y(1));
-center=[ceil(col+width/2) ceil(row+height/2)];
+center=[round(col+width/2) round(row+height/2)];
 
 %Draw a box to highlight object
 draw_box(1,x,y);
@@ -37,19 +37,32 @@ c=pi;
 kernel=epanechnikov_kernel(width,height,c,d);
 
 %Show kernel (illustrative purposes)
-figure(2);
-surf(kernel);
+% figure(2);
+% surf(kernel);
 %----------------------------------------------------------
 
 %---Get 16x16x16 histogram of object based on kernel
-H=ImgHistKernel(obj,width,height,kernel);
+objHist=ImgHistKernel(obj,width,height,kernel);
 %----------------------------------------------------------
 
+%---RELEASE THE TRACKING!
+for i=1:numel(D)
+    %Load the candidate image
+    candImg=imread(strcat(path,D(i).name));
 
+    %Get new center of object
+    center = Mean_Shift(objHist,candImg,center,width,height,kernel);
+
+    %Show image with tracked object
+    figure(3);
+    imshow(candImg);
+    hold on;
+    h = rectangle('Position', [center - [width/2 height/2] [width height]]);
+    set(h, 'EdgeColor', [1 0 0]);
+    hold off;
+    drawnow;
+
+end
 lol=0;
-
-
-
-
 
 end
