@@ -6,15 +6,15 @@ objHist=rgbhist(obj);
 %necessary by nice to have in the long run
 euclDistMat=zeros(size(sB,1)-size(obj,1), size(sB,2)-size(obj,2));
 
-sB = RGB2rg(sB) + epanechnikov_kernel(size(sB, 1), size(sB, 2), pi, 2);
+%sB = RGB2rg(sB) + epanechnikov_kernel(size(sB, 1), size(sB, 2), pi, 2);
 
 %---set an arbitrarily high min distance value
 minDist=999999999;
 
 %---iterate through all pixels in search box. should be changed to
 %euclDistMat sizes in case we dont use the matrix
-for h=1:size(euclDistMat,1)
-    for w=1:size(euclDistMat,2)
+for h=1:5:size(euclDistMat,1)
+    for w=1:3:size(euclDistMat,2)
         %---set parser region in search box to compare object with
         prsr=sB(h:h+size(obj,1), w:w+size(obj,2),:);
         %figure(5),imshow(prsr);

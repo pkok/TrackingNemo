@@ -12,7 +12,7 @@ for h=1:height
 		x=sqrt(hV(h)^2+wV(w)^2);
 		if x<=1
             %calculate kernel value if x is less than 1
-			k(h,w)=(1/2)*(c^-1)*(d+2)*(1-abs(x)^2);
+			k(h,w)=(1/2)*(c^-1)*(d+2)*(1-abs(x)^4);
         else
             %else just make it 0
 			k(h,w)=0;
